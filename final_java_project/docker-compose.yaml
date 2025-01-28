@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: azeezah
+      POSTGRES_PASSWORD: nuggets
+      POSTGRES_DB: library
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: your_username
+      PMA_PASSWORD: your_password
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

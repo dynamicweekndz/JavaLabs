@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотека</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>📚 Библиотека </h1>
+
+    <div class="mt-4 section-card">
+        <h3>Книги
+            <a href="/books/add" class="btn btn-success btn-sm">➕ Добавить</a>
+        </h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Год</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.publishedYear}"></td>
+                <td>
+                    <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary btn-sm">✏️ Редактировать</a>
+                    <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger btn-sm">🗑️ Удалить</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 section-card">
+        <h3>Читатели
+            <a href="/readers/add" class="btn btn-success btn-sm">➕ Добавить</a>
+        </h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Email</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reader : ${readers}">
+                <td th:text="${reader.name}"></td>
+                <td th:text="${reader.email}"></td>
+                <td>
+                    <a th:href="@{/readers/edit/{id}(id=${reader.id})}" class="btn btn-primary btn-sm">✏️ Редактировать</a>
+                    <a th:href="@{/readers/delete/{id}(id=${reader.id})}" class="btn btn-danger btn-sm">🗑️ Удалить</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 section-card">
+        <h3>Займы
+            <a href="/loans/add" class="btn btn-success btn-sm">➕ Добавить</a>
+        </h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Книга</th>
+                <th>Читатель</th>
+                <th>Выдана</th>
+                <th>Возврат</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="loan : ${loans}">
+                <td th:text="${loan.book.title}"></td>
+                <td th:text="${loan.reader.name}"></td>
+                <td th:text="${#temporals.format(loan.loanDate, 'dd.MM.yyyy')}"></td>
+                <td th:text="${loan.returnDate != null} ? ${#temporals.format(loan.returnDate, 'dd.MM.yyyy')} : '❌ Не возвращена'"></td>
+                <td>
+                    <a th:href="@{/loans/edit/{id}(id=${loan.id})}" class="btn btn-primary btn-sm">✏️ Редактировать</a>
+                    <a th:href="@{/loans/delete/{id}(id=${loan.id})}" class="btn btn-danger btn-sm">🗑️ Удалить</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

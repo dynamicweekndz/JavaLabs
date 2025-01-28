@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование займа</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>✏️ Редактирование займа</h2>
+
+    <form th:action="@{/loans/edit}" method="post" th:object="${loan}">
+        <input type="hidden" th:field="*{id}"/>
+
+        <!-- Выбор книги -->
+        <div class="form-group">
+            <label>Книга:</label>
+            <select class="form-control" th:field="*{book.id}">
+                <option th:each="book : ${books}"
+                        th:value="${book.id}"
+                        th:text="${book.title + ' (' + book.author + ')'}"
+                        th:selected="${book.id == loan.book.id}">
+                </option>
+            </select>
+        </div>
+
+        <!-- Выбор читателя -->
+        <div class="form-group">
+            <label>Читатель:</label>
+            <select class="form-control" th:field="*{reader.id}">
+                <option th:each="reader : ${readers}"
+                        th:value="${reader.id}"
+                        th:text="${reader.name + ' (' + reader.email + ')'}"
+                        th:selected="${reader.id == loan.reader.id}">
+                </option>
+            </select>
+        </div>
+
+        <!-- Дата выдачи -->
+        <div class="form-group">
+            <label>Дата выдачи:</label>
+            <input type="date" class="form-control"
+                   th:field="*{loanDate}"
+                   required
+                   pattern="\d{4}-\d{2}-\d{2}">
+        </div>
+
+        <!-- Дата возврата -->
+        <div class="form-group">
+            <label>Дата возврата:</label>
+            <input type="date" class="form-control"
+                   th:field="*{returnDate}"
+                   pattern="\d{4}-\d{2}-\d{2}">
+            <small class="form-text text-muted">Оставьте пустым, если книга не возвращена</small>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+            <a href="/" class="btn btn-secondary">🚫 Отмена</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование читателя</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="form-header mb-4">
+        <h1 class="display-5">
+            <i class="fas fa-user-edit text-primary"></i>
+            Редактирование профиля
+        </h1>
+        <p class="text-muted">ID читателя: <span th:text="${reader.id}" class="badge badge-info"></span></p>
+    </div>
+
+    <form th:action="@{/readers/edit}" th:object="${reader}" method="post" id="editForm">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label class="font-weight-bold">
+                <i class="fas fa-signature"></i> Полное имя:
+            </label>
+            <input type="text"
+                   class="form-control form-control-lg"
+                   th:field="*{name}"
+                   required
+                   minlength="3"
+                   placeholder="Иванов Иван Иванович">
+            <small class="form-text text-muted">Минимум 3 символа</small>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold">
+                <i class="fas fa-at"></i> Электронная почта:
+            </label>
+            <input type="email"
+                   class="form-control form-control-lg"
+                   th:field="*{email}"
+                   required
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                   placeholder="example@library.ru">
+            <div class="invalid-feedback">Введите корректный email</div>
+        </div>
+
+        <div class="form-actions mt-5">
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save"></i> Сохранить изменения
+            </button>
+            <a href="/" class="btn btn-outline-secondary btn-lg" onclick="return confirm('Отменить изменения?')">
+                <i class="fas fa-times-circle"></i> Отмена
+            </a>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Live validation
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('editForm');
+
+        form.addEventListener('submit', (e) => {
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+</script>
+</body>
+</html>

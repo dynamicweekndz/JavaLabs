@@ -1,0 +1,143 @@
+/* styles.css */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #2c3e50;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+h3 {
+    color: #34495e;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background: #3498db !important;
+    color: white;
+    border: none;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+.btn {
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 3px;
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    border: none;
+}
+
+.btn-danger {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    border: none;
+}
+
+.btn-sm {
+    padding: 5px 15px;
+    font-size: 0.9em;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+.section-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+td, th {
+    vertical-align: middle !important;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.form-actions {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+    border: none;
+}
+
+/* Добавьте эти стили в конец файла */
+.btn-lg {
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.alert-warning {
+    background: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+    border-radius: 12px;
+}
