@@ -16,9 +16,15 @@ public class Name {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        if (surname != null) sb.append(surname).append(" ");
-        if (firstName != null) sb.append(firstName).append(" ");
-        if (middleName != null) sb.append(middleName);
+        if (surname != null) {
+            sb.append(surname).append(" ");
+        }
+        if (firstName != null) {
+            sb.append(firstName).append(" ");
+        }
+        if (middleName != null) {
+            sb.append(middleName);
+        }
         return sb.toString().trim();
     }
 }

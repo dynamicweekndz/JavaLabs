@@ -37,7 +37,7 @@ public class Main {
         System.out.println(namedPushkin);
         System.out.println(namedMayakovsky);
 
-        // --- Задача 4: Города(для задачи 3.3) ---
+        // --- Задача 4: Города (для задачи 3.3) ---
         City A = new City("A");
         City B = new City("B");
         City C = new City("C");
